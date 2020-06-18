@@ -555,7 +555,8 @@ public abstract class OpcPackage extends Base implements PackageIdentifier {
 		startEvent.publish();			
 		
 		if (type.equals(Filetype.ZippedPackage)){
-			
+			//FARES NOTES:
+			//This part here starts the parsing I presume
 			final ZipPartStore partLoader = new ZipPartStore(is);
 			final Load3 loader = new Load3(partLoader);
 			OpcPackage opcPackage = loader.get();

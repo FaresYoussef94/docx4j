@@ -75,8 +75,8 @@ public class CompareDocuments {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		String newerfilepath = System.getProperty("user.dir") + "/test2.docx";
-		String olderfilepath = System.getProperty("user.dir") + "/test.docx";
+		String newerfilepath = "/Users/faresyoussef/Desktop/testing differences/sample-docx.docx";
+		String olderfilepath = "/Users/faresyoussef/Desktop/testing differences/sample-docxv2.docx";
 		
 		// 1. Load the Packages
 		WordprocessingMLPackage newerPackage = WordprocessingMLPackage.load(new java.io.File(newerfilepath));
@@ -121,11 +121,839 @@ public class CompareDocuments {
 					newerPackage.getMainDocumentPart().getRelationshipsPart(),
 					olderPackage.getMainDocumentPart().getRelationshipsPart() 
 					);
+		//OKAY TILL HERE
+		
 		}
 		
 		// 3. Get the result
 		String contentStr = sw.toString();
 //		System.out.println("Result: \n\n " + contentStr);
+		System.out.println("THE CONTENT:  \n\n" +contentStr);
+		
+//		String tempContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><w:body xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\" xmlns:pic=\"http://schemas.openxmlformats.org/drawingml/2006/picture\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w10=\"urn:schemas-microsoft-com:office:word\" xmlns:w14=\"http://schemas.microsoft.com/office/word/2010/wordml\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\" xmlns:dfx=\"http://www.topologi.com/2005/Diff-X\" xmlns:del=\"http://www.topologi.com/2005/Diff-X/Delete\" xmlns:ins=\"http://www.topologi.com/2005/Diff-X\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:a14=\"http://schemas.microsoft.com/office/drawing/2010/main\">\n" + 
+//				"    <w:p xmlns:ins=\"http://www.topologi.com/2005/Diff-X/Insert\" xmlns:wne=\"http://schemas.microsoft.com/office/word/2006/wordml\" xmlns:wp14=\"http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing\" xmlns:wpc=\"http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas\" xmlns:wps=\"http://schemas.microsoft.com/office/word/2010/wordprocessingShape\" xmlns:w15=\"http://schemas.microsoft.com/office/word/2012/wordml\" xmlns:wpi=\"http://schemas.microsoft.com/office/word/2010/wordprocessingInk\" xmlns:m=\"http://schemas.openxmlformats.org/officeDocument/2006/math\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:wpg=\"http://schemas.microsoft.com/office/word/2010/wordprocessingGroup\" w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Title\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" xmlns:ins=\"http://www.topologi.com/2005/Diff-X\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Docx sample document</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">This is a document exhibiting basic docx features.</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">  </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:del xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"1\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\">Compared to the Flat OPC version, it contains a few innocuous differents.</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:del>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">This is style Heading 1</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Some text.</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Tables</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:tbl>\n" + 
+//				"        <w:tblPr>\n" + 
+//				"            <w:tblStyle w:val=\"TableGrid\"/>\n" + 
+//				"            <w:tblW w:type=\"auto\" w:w=\"0\"/>\n" + 
+//				"            <w:tblLook w:firstColumn=\"1\" w:firstRow=\"1\" w:lastColumn=\"0\" w:lastRow=\"0\" w:noHBand=\"0\" w:noVBand=\"1\" w:val=\"04A0\"/>\n" + 
+//				"        </w:tblPr>\n" + 
+//				"        <w:tblGrid>\n" + 
+//				"            <w:gridCol w:w=\"3561\"/>\n" + 
+//				"            <w:gridCol w:w=\"3561\"/>\n" + 
+//				"            <w:gridCol w:w=\"3561\"/>\n" + 
+//				"        </w:tblGrid>\n" + 
+//				"        <w:tr w:rsidR=\"00D15781\">\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                    <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                        <w:t xml:space=\"preserve\">Cell text</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                    <w:shd w:color=\"auto\" w:fill=\"D9D9D9\" w:themeFill=\"background1\" w:themeFillShade=\"D9\" w:val=\"clear\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                    <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                        <w:t xml:space=\"preserve\">Shaded grey</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"        </w:tr>\n" + 
+//				"        <w:tr w:rsidR=\"00D15781\">\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                    <w:vMerge w:val=\"restart\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                    <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                        <w:t xml:space=\"preserve\">Vertical merge</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                    <w:shd w:color=\"auto\" w:fill=\"D9D9D9\" w:themeFill=\"background1\" w:themeFillShade=\"D9\" w:val=\"clear\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                    <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                        <w:t xml:space=\"preserve\">Shaded grey</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"        </w:tr>\n" + 
+//				"        <w:tr w:rsidR=\"00D15781\">\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                    <w:vMerge/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"        </w:tr>\n" + 
+//				"        <w:tr w:rsidR=\"00D15781\">\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"3561\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"            <w:tc>\n" + 
+//				"                <w:tcPr>\n" + 
+//				"                    <w:tcW w:type=\"dxa\" w:w=\"7122\"/>\n" + 
+//				"                    <w:gridSpan w:val=\"2\"/>\n" + 
+//				"                </w:tcPr>\n" + 
+//				"                <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"                    <w:pPr>\n" + 
+//				"                        <w:ind w:left=\"0\"/>\n" + 
+//				"                    </w:pPr>\n" + 
+//				"                    <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                        <w:t xml:space=\"preserve\">Horizontal merge</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:p>\n" + 
+//				"            </w:tc>\n" + 
+//				"        </w:tr>\n" + 
+//				"    </w:tbl>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">(There is another document which tests tables more thoroughly)</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Paragraph properties</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Left indent</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"center\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Centre</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">d </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"right\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Align Right</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Justified text</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"720\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Indented</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:del xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"2\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\"> indented indented indented</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:del>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\"> indented indented indented indented indented indented indented indented indented indented indented indented indented indented indented indented indented indented indented </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:hanging=\"720\" w:left=\"1440\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">First line indent, Left indent, Hanging indent aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb aaa bbb</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Normal</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00665DAE\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:spacing w:after=\"400\" w:before=\"200\"/>\n" + 
+//				"            <w:ind w:left=\"85\" w:right=\"85\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">A</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:ins xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"3\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\"> </w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:ins>\n" + 
+//				"        <w:del xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"4\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\"> para</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:del>\n" + 
+//				"        <w:ins xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"5\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\">short </w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:ins>\n" + 
+//				"        <w:bookmarkStart w:id=\"0\" w:name=\"_GoBack\"/>\n" + 
+//				"        <w:bookmarkEnd w:id=\"0\"/>\n" + 
+//				"        <w:ins xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" w:date=\"2009-03-11T17:57:00Z\" w:author=\"someone\" w:id=\"6\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:t xml:space=\"preserve\">para</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:ins>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">graph with 10 points spacing before, 20 points after.</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Run properties</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Font styles </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:rPr>\n" + 
+//				"                <w:rFonts w:ascii=\"Arial Black\" w:hAnsi=\"Arial Black\"/>\n" + 
+//				"            </w:rPr>\n" + 
+//				"            <w:t xml:space=\"preserve\">Aerial Black</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Font styles </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:rPr>\n" + 
+//				"                <w:sz w:val=\"36\"/>\n" + 
+//				"                <w:szCs w:val=\"36\"/>\n" + 
+//				"            </w:rPr>\n" + 
+//				"            <w:t xml:space=\"preserve\">18 point</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Font styles </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:rPr>\n" + 
+//				"                <w:b/>\n" + 
+//				"            </w:rPr>\n" + 
+//				"            <w:t xml:space=\"preserve\">bold</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Font styles </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:rPr>\n" + 
+//				"                <w:i/>\n" + 
+//				"            </w:rPr>\n" + 
+//				"            <w:t xml:space=\"preserve\">italic</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Font styles </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:rPr>\n" + 
+//				"                <w:u w:val=\"single\"/>\n" + 
+//				"            </w:rPr>\n" + 
+//				"            <w:t xml:space=\"preserve\">underline</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Bullets &amp; numbering</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Bullets</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"ListParagraph\"/>\n" + 
+//				"            <w:numPr>\n" + 
+//				"                <w:ilvl w:val=\"0\"/>\n" + 
+//				"                <w:numId w:val=\"1\"/>\n" + 
+//				"            </w:numPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Level 1</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"ListParagraph\"/>\n" + 
+//				"            <w:numPr>\n" + 
+//				"                <w:ilvl w:val=\"1\"/>\n" + 
+//				"                <w:numId w:val=\"1\"/>\n" + 
+//				"            </w:numPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:lastRenderedPageBreak/>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Level 2</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Numbering</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"ListParagraph\"/>\n" + 
+//				"            <w:numPr>\n" + 
+//				"                <w:ilvl w:val=\"0\"/>\n" + 
+//				"                <w:numId w:val=\"2\"/>\n" + 
+//				"            </w:numPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Level 1</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"ListParagraph\"/>\n" + 
+//				"            <w:numPr>\n" + 
+//				"                <w:ilvl w:val=\"1\"/>\n" + 
+//				"                <w:numId w:val=\"2\"/>\n" + 
+//				"            </w:numPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Level 2</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"ListParagraph\"/>\n" + 
+//				"            <w:numPr>\n" + 
+//				"                <w:ilvl w:val=\"2\"/>\n" + 
+//				"                <w:numId w:val=\"2\"/>\n" + 
+//				"            </w:numPr>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Level 3</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"720\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:pStyle w:val=\"Heading1\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Images</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Jpeg:</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:drawing>\n" + 
+//				"                <wp:inline distB=\"0\" distL=\"0\" distR=\"0\" distT=\"0\">\n" + 
+//				"                    <wp:extent cx=\"3238500\" cy=\"2362200\"/>\n" + 
+//				"                    <wp:effectExtent b=\"0\" l=\"19050\" r=\"0\" t=\"0\"/>\n" + 
+//				"                    <wp:docPr descr=\"C:\\Documents and Settings\\Jason Harrop\\My Documents\\tmp-test-docs\\pangolin.jpeg\" id=\"1\" name=\"Picture 1\"/>\n" + 
+//				"                    <wp:cNvGraphicFramePr>\n" + 
+//				"                        <a:graphicFrameLocks noChangeAspect=\"true\"/>\n" + 
+//				"                    </wp:cNvGraphicFramePr>\n" + 
+//				"                    <a:graphic>\n" + 
+//				"                        <a:graphicData uri=\"http://schemas.openxmlformats.org/drawingml/2006/picture\">\n" + 
+//				"                            <pic:pic>\n" + 
+//				"                                <pic:nvPicPr>\n" + 
+//				"                                    <pic:cNvPr descr=\"C:\\Documents and Settings\\Jason Harrop\\My Documents\\tmp-test-docs\\pangolin.jpeg\" id=\"0\" name=\"Picture 1\"/>\n" + 
+//				"                                    <pic:cNvPicPr>\n" + 
+//				"                                        <a:picLocks noChangeArrowheads=\"true\" noChangeAspect=\"true\"/>\n" + 
+//				"                                    </pic:cNvPicPr>\n" + 
+//				"                                </pic:nvPicPr>\n" + 
+//				"                                <pic:blipFill>\n" + 
+//				"                                    <a:blip r:embed=\"rId8Lblagh\"/>\n" + 
+//				"                                    <a:srcRect/>\n" + 
+//				"                                    <a:stretch>\n" + 
+//				"                                        <a:fillRect/>\n" + 
+//				"                                    </a:stretch>\n" + 
+//				"                                </pic:blipFill>\n" + 
+//				"                                <pic:spPr bwMode=\"auto\">\n" + 
+//				"                                    <a:xfrm>\n" + 
+//				"                                        <a:off x=\"0\" y=\"0\"/>\n" + 
+//				"                                        <a:ext cx=\"3238500\" cy=\"2362200\"/>\n" + 
+//				"                                    </a:xfrm>\n" + 
+//				"                                    <a:prstGeom prst=\"rect\">\n" + 
+//				"                                        <a:avLst/>\n" + 
+//				"                                    </a:prstGeom>\n" + 
+//				"                                    <a:noFill/>\n" + 
+//				"                                    <a:ln w=\"9525\">\n" + 
+//				"                                        <a:noFill/>\n" + 
+//				"                                        <a:miter lim=\"800000\"/>\n" + 
+//				"                                        <a:headEnd/>\n" + 
+//				"                                        <a:tailEnd/>\n" + 
+//				"                                    </a:ln>\n" + 
+//				"                                </pic:spPr>\n" + 
+//				"                            </pic:pic>\n" + 
+//				"                        </a:graphicData>\n" + 
+//				"                    </a:graphic>\n" + 
+//				"                </wp:inline>\n" + 
+//				"            </w:drawing>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Gif (scaled):</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:lastRenderedPageBreak/>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:drawing>\n" + 
+//				"                <wp:inline distB=\"0\" distL=\"0\" distR=\"0\" distT=\"0\">\n" + 
+//				"                    <wp:extent cx=\"2809875\" cy=\"5473022\"/>\n" + 
+//				"                    <wp:effectExtent b=\"0\" l=\"19050\" r=\"9525\" t=\"0\"/>\n" + 
+//				"                    <wp:docPr descr=\"Escher: Liberation\" id=\"2\" name=\"Picture 2\"/>\n" + 
+//				"                    <wp:cNvGraphicFramePr>\n" + 
+//				"                        <a:graphicFrameLocks noChangeAspect=\"true\"/>\n" + 
+//				"                    </wp:cNvGraphicFramePr>\n" + 
+//				"                    <a:graphic>\n" + 
+//				"                        <a:graphicData uri=\"http://schemas.openxmlformats.org/drawingml/2006/picture\">\n" + 
+//				"                            <pic:pic>\n" + 
+//				"                                <pic:nvPicPr>\n" + 
+//				"                                    <pic:cNvPr descr=\"Escher: Liberation\" id=\"0\" name=\"Picture 2\"/>\n" + 
+//				"                                    <pic:cNvPicPr>\n" + 
+//				"                                        <a:picLocks noChangeArrowheads=\"true\" noChangeAspect=\"true\"/>\n" + 
+//				"                                    </pic:cNvPicPr>\n" + 
+//				"                                </pic:nvPicPr>\n" + 
+//				"                                <pic:blipFill>\n" + 
+//				"                                    <a:blip r:embed=\"rId9Lblagh\"/>\n" + 
+//				"                                    <a:srcRect/>\n" + 
+//				"                                    <a:stretch>\n" + 
+//				"                                        <a:fillRect/>\n" + 
+//				"                                    </a:stretch>\n" + 
+//				"                                </pic:blipFill>\n" + 
+//				"                                <pic:spPr bwMode=\"auto\">\n" + 
+//				"                                    <a:xfrm>\n" + 
+//				"                                        <a:off x=\"0\" y=\"0\"/>\n" + 
+//				"                                        <a:ext cx=\"2810209\" cy=\"5473672\"/>\n" + 
+//				"                                    </a:xfrm>\n" + 
+//				"                                    <a:prstGeom prst=\"rect\">\n" + 
+//				"                                        <a:avLst/>\n" + 
+//				"                                    </a:prstGeom>\n" + 
+//				"                                    <a:noFill/>\n" + 
+//				"                                    <a:ln w=\"9525\">\n" + 
+//				"                                        <a:noFill/>\n" + 
+//				"                                        <a:miter lim=\"800000\"/>\n" + 
+//				"                                        <a:headEnd/>\n" + 
+//				"                                        <a:tailEnd/>\n" + 
+//				"                                    </a:ln>\n" + 
+//				"                                </pic:spPr>\n" + 
+//				"                            </pic:pic>\n" + 
+//				"                        </a:graphicData>\n" + 
+//				"                    </a:graphic>\n" + 
+//				"                </wp:inline>\n" + 
+//				"            </w:drawing>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Png (from </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:hyperlink xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\" r:id=\"rId10\" w:history=\"true\">\n" + 
+//				"            <w:r>\n" + 
+//				"                <w:rPr>\n" + 
+//				"                    <w:rStyle w:val=\"Hyperlink\"/>\n" + 
+//				"                </w:rPr>\n" + 
+//				"                <w:t xml:space=\"preserve\">http://davidpritchard.org/images/pacsoc-s1b.png</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:hyperlink>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\"> )</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:drawing>\n" + 
+//				"                <wp:inline distB=\"0\" distL=\"0\" distR=\"0\" distT=\"0\">\n" + 
+//				"                    <wp:extent cx=\"4286250\" cy=\"3343275\"/>\n" + 
+//				"                    <wp:effectExtent b=\"0\" l=\"19050\" r=\"0\" t=\"0\"/>\n" + 
+//				"                    <wp:docPr descr=\"http://davidpritchard.org/images/pacsoc-s1b.png\" id=\"5\" name=\"Picture 5\"/>\n" + 
+//				"                    <wp:cNvGraphicFramePr>\n" + 
+//				"                        <a:graphicFrameLocks noChangeAspect=\"true\"/>\n" + 
+//				"                    </wp:cNvGraphicFramePr>\n" + 
+//				"                    <a:graphic>\n" + 
+//				"                        <a:graphicData uri=\"http://schemas.openxmlformats.org/drawingml/2006/picture\">\n" + 
+//				"                            <pic:pic>\n" + 
+//				"                                <pic:nvPicPr>\n" + 
+//				"                                    <pic:cNvPr descr=\"http://davidpritchard.org/images/pacsoc-s1b.png\" id=\"0\" name=\"Picture 5\"/>\n" + 
+//				"                                    <pic:cNvPicPr>\n" + 
+//				"                                        <a:picLocks noChangeArrowheads=\"true\" noChangeAspect=\"true\"/>\n" + 
+//				"                                    </pic:cNvPicPr>\n" + 
+//				"                                </pic:nvPicPr>\n" + 
+//				"                                <pic:blipFill>\n" + 
+//				"                                    <a:blip r:embed=\"rId11Lblagh\"/>\n" + 
+//				"                                    <a:srcRect/>\n" + 
+//				"                                    <a:stretch>\n" + 
+//				"                                        <a:fillRect/>\n" + 
+//				"                                    </a:stretch>\n" + 
+//				"                                </pic:blipFill>\n" + 
+//				"                                <pic:spPr bwMode=\"auto\">\n" + 
+//				"                                    <a:xfrm>\n" + 
+//				"                                        <a:off x=\"0\" y=\"0\"/>\n" + 
+//				"                                        <a:ext cx=\"4286250\" cy=\"3343275\"/>\n" + 
+//				"                                    </a:xfrm>\n" + 
+//				"                                    <a:prstGeom prst=\"rect\">\n" + 
+//				"                                        <a:avLst/>\n" + 
+//				"                                    </a:prstGeom>\n" + 
+//				"                                    <a:noFill/>\n" + 
+//				"                                    <a:ln w=\"9525\">\n" + 
+//				"                                        <a:noFill/>\n" + 
+//				"                                        <a:miter lim=\"800000\"/>\n" + 
+//				"                                        <a:headEnd/>\n" + 
+//				"                                        <a:tailEnd/>\n" + 
+//				"                                    </a:ln>\n" + 
+//				"                                </pic:spPr>\n" + 
+//				"                            </pic:pic>\n" + 
+//				"                        </a:graphicData>\n" + 
+//				"                    </a:graphic>\n" + 
+//				"                </wp:inline>\n" + 
+//				"            </w:drawing>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">(TODO: we really should have both 2003 &amp; 2007 pictures)</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\"/>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:br w:type=\"page\"/>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:lastRenderedPageBreak/>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">That was a page break</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">Here is some change tracking. </w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:ins w:author=\"Jason Harrop\" w:date=\"2007-12-09T10:14:00Z\" w:id=\"1\">\n" + 
+//				"            <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                <w:t xml:space=\"preserve\">An insertion</w:t>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:ins>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\"> Followed by</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:del w:author=\"Jason Harrop\" w:date=\"2007-12-09T10:14:00Z\" w:id=\"2\">\n" + 
+//				"            <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"                <w:delText xml:space=\"preserve\">\n" + 
+//				"                    <w:r>\n" + 
+//				"                        <w:t xml:space=\"preserve\"> A deletion</w:t>\n" + 
+//				"                    </w:r>\n" + 
+//				"                </w:delText>\n" + 
+//				"            </w:r>\n" + 
+//				"        </w:del>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">.</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"            <w:jc w:val=\"both\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00945132\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">This line contains a soft return</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:br/>\n" + 
+//				"        </w:r>\n" + 
+//				"        <w:r xmlns:xalan=\"http://xml.apache.org/xalan\" xmlns:pkg=\"http://schemas.microsoft.com/office/2006/xmlPackage\">\n" + 
+//				"            <w:t xml:space=\"preserve\">and here it continues</w:t>\n" + 
+//				"        </w:r>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:p w:rsidR=\"00D15781\" w:rsidRDefault=\"00D15781\">\n" + 
+//				"        <w:pPr>\n" + 
+//				"            <w:ind w:left=\"0\"/>\n" + 
+//				"        </w:pPr>\n" + 
+//				"    </w:p>\n" + 
+//				"    <w:sectPr w:rsidR=\"00D15781\">\n" + 
+//				"        <w:pgSz w:code=\"9\" w:h=\"16839\" w:w=\"11907\"/>\n" + 
+//				"        <w:pgMar w:bottom=\"720\" w:footer=\"720\" w:gutter=\"0\" w:header=\"720\" w:left=\"720\" w:right=\"720\" w:top=\"720\"/>\n" + 
+//				"        <w:cols w:space=\"720\"/>\n" + 
+//				"        <w:docGrid w:linePitch=\"360\"/>\n" + 
+//				"    </w:sectPr>\n" + 
+//				"</w:body>";
+		
 		Body newBody = (Body) XmlUtils.unwrap(
 				XmlUtils.unmarshalString(contentStr));
 		
@@ -141,7 +969,7 @@ public class CompareDocuments {
 		
 		
 		if (DOCX_SAVE) {
-			newerPackage.save(new File(System.getProperty("user.dir") +"/OUT_CompareDocuments.docx"));
+			newerPackage.save(new File("/Users/faresyoussef/Desktop/testing differences/OUT_CompareDocuments.docx"));
 		}
 		
 		if (PDF_SAVE) {
