@@ -278,6 +278,7 @@ abstract class XMLWriterBase implements XMLWriter {
   @Override
   public final void attribute(String name, String value)
       throws IOException {
+	  System.out.println("NAME: "+ name +", VALUE: "+value +", NUDE: " + this.isNude);
     if (!this.isNude) throw new IllegalStateException("Cannot write attribute: too late!");
     this.writer.write(' ');
     this.writer.write(name);

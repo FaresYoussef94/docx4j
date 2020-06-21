@@ -43,6 +43,7 @@ import org.w3c.dom.Node;
 import com.topologi.diffx.algorithm.DiffXAlgorithm;
 import com.topologi.diffx.algorithm.DiffXFitopsy;
 import com.topologi.diffx.config.DiffXConfig;
+import com.topologi.diffx.config.WhiteSpaceProcessing;
 import com.topologi.diffx.event.DiffXEvent;
 import com.topologi.diffx.event.impl.CommentEvent;
 import com.topologi.diffx.format.DiffXFormatter;
@@ -180,6 +181,7 @@ public class Docx4jDriver {
 			DiffXConfig diffxConfig = new DiffXConfig();
 			diffxConfig.setIgnoreWhiteSpace(false);
 			diffxConfig.setPreserveWhiteSpace(true);
+//			diffxConfig.setWhiteSpaceProcessing(WhiteSpaceProcessing.IGNORE);
 
 			log.debug(xml1.getNodeName());
 			log.debug(""+ xml1.getChildNodes().getLength());
@@ -284,7 +286,7 @@ public class Docx4jDriver {
 			}
 			EventSequenceComparator rightESC = new EventSequenceComparator(rightES);
 
-			log.debug("top level LCS - determining top level LCS...");
+			log.debug("top level LCS - determining top level LCS....");
 			RangeDifference[] rd = RangeDifferencer.findDifferences(leftESC, rightESC);
 
 			SmartXMLFormatter formatter = new SmartXMLFormatter(out);

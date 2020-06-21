@@ -75,8 +75,8 @@ public class CompareDocuments {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		String newerfilepath = System.getProperty("user.dir") + "/test2.docx";
-		String olderfilepath = System.getProperty("user.dir") + "/test.docx";
+		String olderfilepath = "/Users/faresyoussef/Desktop/docx4j-testing/copy.docx";
+		String newerfilepath = "/Users/faresyoussef/Desktop/docx4j-testing/original.docx";
 		
 		// 1. Load the Packages
 		WordprocessingMLPackage newerPackage = WordprocessingMLPackage.load(new java.io.File(newerfilepath));
@@ -141,7 +141,7 @@ public class CompareDocuments {
 		
 		
 		if (DOCX_SAVE) {
-			newerPackage.save(new File(System.getProperty("user.dir") +"/OUT_CompareDocuments.docx"));
+			newerPackage.save(new File("/Users/faresyoussef/Desktop/docx4j-testing/OUT_CompareDocuments.docx"));
 		}
 		
 		if (PDF_SAVE) {
